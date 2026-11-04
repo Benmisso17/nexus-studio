@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة المشاريع | NEXUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body { font-family:'Tajawal',sans-serif; background: #0a0512; color: #fff; padding: 20px; margin: 0; }
+    .container { max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 30px; border-radius: 24px; backdrop-filter: blur(12px); }
+    h2 { text-align: center; color: #fbbf24; margin-bottom: 20px; }
+    .item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .item h3 { margin: 0; font-size: 1.1rem; }
+    .btn-del { background: #ef4444; color: white; text-decoration: none; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; transition: 0.3s; }
+    .btn-del:hover { background: #dc2626; }
+    .nav-links { text-align: center; margin-bottom: 20px; }
+    .nav-links a { color: #06b6d4; text-decoration: none; margin: 0 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="nav-links">
+        <a href="/admin">➕ إضافة مشروع جديد</a>
+        <a href="/">🏠 الصفحة الرئيسية</a>
+        <a href="/logout" style="color:#ef4444;">🚪 خروج</a>
+    </div>
+    <h2>قائمة المشاريع الحالية</h2>
+    {% for p in projects %}
+    <div class="item">
+        <h3>{{ p.icon }} {{ p.title }}</h3>
+        <a href="/delete/{{ p.id }}" class="btn-del" onclick="return confirm('هل أنت متأكد من حذف هذا المشروع؟');">حذف</a>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

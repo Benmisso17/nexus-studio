@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عني | NEXUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+    body { font-family:'Tajawal',sans-serif; background: #0a0512; color: #f8fafc; margin: 0; padding: 0; line-height: 1.8; }
+    .aurora { position:fixed; inset:0; z-index:-1; overflow:hidden; }
+    .aurora span { position:absolute; border-radius:50%; filter:blur(120px); opacity:.45; animation:float 20s ease-in-out infinite; }
+    .aurora span:nth-child(1) { width:600px; height:600px; background:#7c3aed; top:-200px; right:-150px; }
+    .aurora span:nth-child(2) { width:500px; height:500px; background:#06b6d4; bottom:-100px; left:-150px; animation-delay:-7s; }
+    @keyframes float { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(50px,-50px) scale(1.1); } }
+    nav { padding: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    nav a { color: #f8fafc; text-decoration: none; margin: 0 15px; font-weight: bold; }
+    nav a:hover { color: #fbbf24; }
+    .container { max-width: 800px; margin: 50px auto; padding: 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; backdrop-filter: blur(12px); text-align: center; }
+    h1 { color: #fbbf24; font-size: 2.5rem; margin-bottom: 20px; }
+    p { font-size: 1.1rem; color: #94a3b8; margin-bottom: 20px; }
+    .skills { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+    .skill { background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); padding: 10px 20px; border-radius: 50px; color: #c4b5fd; }
+</style>
+</head>
+<body>
+<div class="aurora"><span></span><span></span></div>
+<nav>
+    <a href="/">الرئيسية</a>
+    <a href="/about">عني</a>
+    <a href="/contact">تواصل معي</a>
+</nav>
+<div class="container">
+    <h1>مرحباً، أنا مطورك 👋</h1>
+    <p>أنا مطور شغوف ببناء التطبيقات والألعاب والمنصات الرقمية. أؤمن بأن الكود ليس مجرد أوامر، بل هو فن لصناعة تجارب مستخدم تفوق الخيال.</p>
+    <p>من خلال استوديو <strong>NEXUS</strong>، أشارككم رحلتي وأبرز المشاريع التي قمت بتطويرها.</p>
+    <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">Flutter</span>
+        <span class="skill">Game Dev</span>
+        <span class="skill">UI/UX Design</span>
+    </div>
+</div>
+</body>
+</html>

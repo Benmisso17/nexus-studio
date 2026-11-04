@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إضافة مشروع | NEXUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Tajawal',sans-serif; background: #0a0512; color: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .admin-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); padding: 40px; border-radius: 24px; width: 100%; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    h2 { text-align: center; margin-bottom: 30px; color: #fbbf24; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; color: #94a3b8; font-size: 0.9rem; }
+    input, textarea { width: 100%; padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-family: inherit; outline: none; transition: 0.3s; }
+    input:focus, textarea:focus { border-color: #06b6d4; }
+    button { width: 100%; padding: 15px; border-radius: 12px; border: none; background: linear-gradient(135deg, #7c3aed, #06b6d4); color: #fff; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+    .back-link { display: block; text-align: center; margin-top: 20px; color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<div class="admin-card">
+    <h2>إضافة مشروع جديد</h2>
+    <form action="/admin" method="POST">
+        <div class="form-group">
+            <label>الأيقونة (إيموجي)</label>
+            <input type="text" name="icon" placeholder="مثال: 🎮 أو 📱" required>
+        </div>
+        <div class="form-group">
+            <label>رابط الصورة (اختياري - URL)</label>
+            <input type="text" name="image_url" placeholder="https://example.com/image.jpg">
+        </div>
+        <div class="form-group">
+            <label>اسم المشروع</label>
+            <input type="text" name="title" placeholder="اسم التطبيق أو اللعبة" required>
+        </div>
+        <div class="form-group">
+            <label>الوصف</label>
+            <textarea name="description" rows="3" placeholder="وصف قصير وجذاب..." required></textarea>
+        </div>
+        <div class="form-group">
+            <label>التقنيات (مفصولة بفاصلة)</label>
+            <input type="text" name="tags" placeholder="مثال: Python, Flask, Turso" required>
+        </div>
+        <button type="submit">حفظ المشروع في السحابة</button>
+    </form>
+    <a href="/manage" class="back-link">← إدارة المشاريع</a>
+</div>
+</body>
+</html>

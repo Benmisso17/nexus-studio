@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS Studio | استوديو التطوير الرقمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --bg:#0a0512; --violet:#7c3aed; --cyan:#06b6d4; --magenta:#ec4899; --gold:#fbbf24; --text:#f8fafc; --muted:#94a3b8; --glass:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08); }
+html { scroll-behavior:smooth; }
+body { font-family:'Tajawal',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; min-height:100vh; line-height:1.7; }
+.aurora { position:fixed; inset:0; z-index:-1; overflow:hidden; }
+.aurora span { position:absolute; border-radius:50%; filter:blur(120px); opacity:.45; animation:float 20s ease-in-out infinite; }
+.aurora span:nth-child(1) { width:600px; height:600px; background:var(--violet); top:-200px; right:-150px; }
+.aurora span:nth-child(2) { width:500px; height:500px; background:var(--cyan); bottom:-100px; left:-150px; animation-delay:-7s; }
+.aurora span:nth-child(3) { width:400px; height:400px; background:var(--magenta); top:40%; left:40%; animation-delay:-14s; opacity:.3; }
+@keyframes float { 0%,100% { transform:translate(0,0) scale(1); } 33% { transform:translate(80px,-60px) scale(1.15); } 66% { transform:translate(-60px,80px) scale(0.9); } }
+nav { position:sticky; top:0; z-index:100; padding:18px 5%; display:flex; justify-content:space-between; align-items:center; background:rgba(10,5,18,0.6); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.logo { font-size:1.5rem; font-weight:900; letter-spacing:2px; background:linear-gradient(90deg, var(--violet), var(--cyan), var(--magenta)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+nav ul { display:flex; gap:28px; list-style:none; }
+nav a { color:var(--muted); text-decoration:none; font-weight:500; transition:.3s; }
+nav a:hover { color:var(--gold); }
+.hero { min-height:calc(100vh - 80px); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:60px 20px; }
+.hero-tag { display:inline-block; padding:6px 18px; margin-bottom:24px; border:1px solid var(--border); border-radius:50px; background:var(--glass); backdrop-filter:blur(10px); font-size:.85rem; color:var(--gold); letter-spacing:2px; }
+.hero h1 { font-size:clamp(2.5rem, 7vw, 5.5rem); font-weight:900; line-height:1.15; margin-bottom:24px; background:linear-gradient(135deg, #fff 20%, var(--cyan) 50%, var(--violet) 80%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero h1 .gold { background:linear-gradient(135deg, var(--gold), #f59e0b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p { max-width:640px; font-size:1.15rem; color:var(--muted); margin-bottom:40px; }
+.btns { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+.btn { padding:14px 34px; border-radius:50px; font-family:inherit; font-size:1rem; font-weight:700; cursor:pointer; transition:.35s; text-decoration:none; border:none; }
+.btn-primary { background:linear-gradient(135deg, var(--violet), var(--cyan)); color:#fff; box-shadow:0 10px 40px rgba(124,58,237,.4); }
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 15px 50px rgba(6,182,212,.5); }
+.btn-ghost { background:var(--glass); color:var(--text); border:1px solid var(--border); backdrop-filter:blur(10px); }
+.btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+.stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:20px; max-width:1000px; margin:80px auto 0; padding:0 20px; }
+.stat { padding:28px 20px; text-align:center; background:var(--glass); border:1px solid var(--border); border-radius:20px; backdrop-filter:blur(12px); transition:.3s; }
+.stat:hover { border-color:var(--cyan); transform:translateY(-4px); }
+.stat h3 { font-size:2.4rem; font-weight:900; background:linear-gradient(135deg, var(--cyan), var(--violet)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.stat p { color:var(--muted); font-size:.95rem; }
+section { padding:100px 5%; }
+.section-title { text-align:center; margin-bottom:60px; }
+.section-title h2 { font-size:clamp(1.8rem, 4vw, 3rem); font-weight:900; margin-bottom:12px; }
+.section-title h2 span { background:linear-gradient(135deg, var(--magenta), var(--gold)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.section-title p { color:var(--muted); }
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:28px; max-width:1300px; margin:0 auto; }
+.project { padding:28px; border-radius:24px; background:var(--glass); border:1px solid var(--border); backdrop-filter:blur(12px); transition:.4s; position:relative; overflow:hidden; }
+.project::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, transparent, rgba(124,58,237,.15)); opacity:0; transition:.4s; pointer-events:none; }
+.project:hover { transform:translateY(-8px); border-color:var(--cyan); }
+.project:hover::before { opacity:1; }
+.project .icon { width:60px; height:60px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.7rem; margin-bottom:20px; background:linear-gradient(135deg, var(--violet), var(--cyan)); }
+.project .img-cover { width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:20px; border: 1px solid var(--border); }
+.project h3 { font-size:1.3rem; margin-bottom:10px; }
+.project p { color:var(--muted); font-size:.95rem; margin-bottom:18px; }
+.tags { display:flex; gap:8px; flex-wrap:wrap; }
+.tag { padding:4px 12px; border-radius:20px; background:rgba(124,58,237,.15); border:1px solid rgba(124,58,237,.3); color:#c4b5fd; font-size:.75rem; font-weight:600; }
+.cta { text-align:center; padding:100px 20px; position:relative; }
+.cta h2 { font-size:clamp(2rem, 5vw, 3.5rem); font-weight:900; margin-bottom:20px; background:linear-gradient(135deg, var(--gold), var(--magenta)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.cta p { color:var(--muted); max-width:500px; margin:0 auto 40px; }
+footer { text-align:center; padding:40px 20px; border-top:1px solid var(--border); color:var(--muted); font-size:.9rem; }
+footer .logo { font-size:1.1rem; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="aurora"><span></span><span></span><span></span></div>
+<nav>
+  <div class="logo">NEXUS</div>
+  <ul>
+    <li><a href="#projects">المشاريع</a></li>
+    <li><a href="/about">عني</a></li>
+    <li><a href="/contact">تواصل</a></li>
+  </ul>
+</nav>
+<header class="hero">
+  <div class="hero-tag">✦ استوديو تطوير رقمي ✦</div>
+  <h1>أبني تجارب <span class="gold">رقمية</span><br>تفوق الخيال</h1>
+  <p>تطبيقات، ألعاب، ومنصات مصممة بعناية فائقة — من الفكرة إلى الإطلاق.</p>
+  <div class="btns">
+    <a href="#projects" class="btn btn-primary">استعرض أعمالي ←</a>
+    <a href="/contact" class="btn btn-ghost">تواصل معي</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><h3>+10</h3><p>مشروع منجز</p></div>
+    <div class="stat"><h3>+5</h3><p>تقنيات متقنة</p></div>
+    <div class="stat"><h3>100%</h3><p>شغف وإتقان</p></div>
+  </div>
+</header>
+<section id="projects">
+  <div class="section-title">
+    <h2>معرض <span>الأعمال</span></h2>
+    <p>مجموعة مختارة من أحدث ما طوّرته</p>
+  </div>
+  <div class="projects-grid">
+    {% for project in projects %}
+    <div class="project">
+      {% if project.image_url %}
+        <img src="{{ project.image_url }}" class="img-cover" alt="{{ project.title }}">
+      {% else %}
+        <div class="icon">{{ project.icon }}</div>
+      {% endif %}
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+      <div class="tags">
+        {% for tag in project.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<section class="cta" id="contact">
+  <h2>هل لديك فكرة؟</h2>
+  <p>لنحوّلها معاً إلى واقع رقمي استثنائي.</p>
+  <a href="#" class="btn btn-primary">ابدأ الحديث ✦</a>
+</section>
+<footer>
+  <div class="logo">NEXUS STUDIO</div>
+  <p>© 2026 — كل الحقوق محفوظة · صُنع بشغف 🚀</p>
+</footer>
+</body>
+</html>
