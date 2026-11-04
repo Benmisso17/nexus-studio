@@ -13,15 +13,16 @@
     .item h3 { margin: 0; font-size: 1.1rem; }
     .btn-del { background: #ef4444; color: white; text-decoration: none; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; transition: 0.3s; }
     .btn-del:hover { background: #dc2626; }
-    .nav-links { text-align: center; margin-bottom: 20px; }
-    .nav-links a { color: #06b6d4; text-decoration: none; margin: 0 10px; }
+    .nav-links { text-align: center; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .nav-links a { color: #06b6d4; text-decoration: none; margin: 0 5px; }
 </style>
 </head>
 <body>
 <div class="container">
     <div class="nav-links">
-        <a href="/admin">➕ إضافة مشروع جديد</a>
-        <a href="/">🏠 الصفحة الرئيسية</a>
+        <a href="/admin">➕ إضافة مشروع</a>
+        <a href="/messages" style="color: #fbbf24;">📩 صندوق الرسائل</a>
+        <a href="/">🏠 الرئيسية</a>
         <a href="/logout" style="color:#ef4444;">🚪 خروج</a>
     </div>
     <h2>قائمة المشاريع الحالية</h2>
