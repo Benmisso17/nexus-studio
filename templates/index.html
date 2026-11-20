@@ -114,9 +114,7 @@ footer .logo { font-size:1.1rem; margin-bottom:10px; }
     <li><a href="#projects" data-i18n="nav_projects">المشاريع</a></li>
     <li><a href="/about" data-i18n="nav_about">عني</a></li>
     <li><a href="/contact" data-i18n="nav_contact">تواصل</a></li>
-    <!-- تم وضع رابط الديسكورد الخاص بك هنا -->
     <li><a href="https://discord.gg/TbTTNmYca" target="_blank" class="discord-btn"><i class="fab fa-discord"></i> <span data-i18n="nav_discord">ديسكورد</span></a></li>
-    <!-- زر تبديل اللغة -->
     <li><button id="langToggle" class="lang-btn">EN</button></li>
   </ul>
 </nav>
@@ -154,8 +152,9 @@ footer .logo { font-size:1.1rem; margin-bottom:10px; }
       {% else %}
         <div class="icon">{{ project.icon }}</div>
       {% endif %}
-      <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
+      <!-- أضفنا كلاس bilingual هنا للعنوان والوصف -->
+      <h3 class="bilingual">{{ project.title }}</h3>
+      <p class="bilingual">{{ project.description }}</p>
       <div class="tags">
         {% for tag in project.tags %}
         <span class="tag">{{ tag }}</span>
@@ -182,7 +181,6 @@ footer .logo { font-size:1.1rem; margin-bottom:10px; }
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-// قاموس الترجمة
 const translations = {
     ar: {
         nav_projects: "المشاريع", nav_about: "عني", nav_contact: "تواصل", nav_discord: "ديسكورد",
@@ -211,7 +209,27 @@ const translations = {
 let currentLang = 'ar';
 let typewriterTimeout;
 
-// دالة تغيير اللغة
+// دالة ذكية لفصل النصوص المزدوجة (عربي | إنجليزي)
+function processBilingualTexts() {
+    document.querySelectorAll('.bilingual').forEach(el => {
+        // حفظ النص الأصلي في الذاكرة عند أول مرة
+        if (!el.dataset.original) {
+            el.dataset.original = el.innerText;
+        }
+        const text = el.dataset.original;
+        
+        // إذا كان النص يحتوي على الفاصل |
+        if (text.includes('|')) {
+            const parts = text.split('|');
+            if (currentLang === 'ar') {
+                el.innerText = parts[0].trim(); // خذ الجزء العربي
+            } else {
+                el.innerText = parts[1].trim(); // خذ الجزء الإنجليزي
+            }
+        }
+    });
+}
+
 function setLanguage(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
@@ -225,10 +243,12 @@ function setLanguage(lang) {
     });
 
     document.getElementById('langToggle').innerText = lang === 'ar' ? 'EN' : 'عربي';
+    
+    // استدعاء الدالة لفصل نصوص المشاريع
+    processBilingualTexts();
     startTypewriter();
 }
 
-// دالة الآلة الكاتبة
 function startTypewriter() {
     clearTimeout(typewriterTimeout);
     const twElement = document.getElementById("typewriter");
@@ -246,7 +266,6 @@ function startTypewriter() {
     type();
 }
 
-// زر تبديل اللغة
 document.getElementById('langToggle').addEventListener('click', () => {
     setLanguage(currentLang === 'ar' ? 'en' : 'ar');
 });
@@ -260,7 +279,12 @@ window.addEventListener('load', () => {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#7c3aed', '#06b6d4', '#ec4899', '#fbbf24'] });
         }, 300);
     }, 1500);
-    setTimeout(() => startTypewriter(), 2000);
+    
+    // بدء الآلة الكاتبة وفصل النصوص بعد التحميل
+    setTimeout(() => {
+        startTypewriter();
+        processBilingualTexts();
+    }, 2000);
 });
 
 particlesJS("particles-js", {
